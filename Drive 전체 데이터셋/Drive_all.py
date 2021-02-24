@@ -12,9 +12,9 @@ from lightgbm import LGBMClassifier
 df0 = pd.read_csv('./KSJR_Car_Hacking_D_training-0(DS_CV)_0.csv')
 df1 = pd.read_csv('./KSJR_Car_Hacking_D_training-1(DS_CV)_0.csv')
 df2 = pd.read_csv('./KSJR_Car_Hacking_D_training-2(DS_CV)_0.csv')
-df_x0 = df0[['Arbitration_ID','Data0','Data1','Data2','Data3','Data4','Data5','Data6','Data7']]
-df_x1 = df1[['Arbitration_ID','Data0','Data1','Data2','Data3','Data4','Data5','Data6','Data7']]
-df_x2 = df2[['Arbitration_ID','Data0','Data1','Data2','Data3','Data4','Data5','Data6','Data7']]
+df_x0 = df0[['Arbitration_ID','Data0','Data1','Data2','Data3','Data4','Data5','Data6']]#,'Data7']]
+df_x1 = df1[['Arbitration_ID','Data0','Data1','Data2','Data3','Data4','Data5','Data6']]#,'Data7']]
+df_x2 = df2[['Arbitration_ID','Data0','Data1','Data2','Data3','Data4','Data5','Data6']]#,'Data7']]
 #df_x = df[['Arbitration_ID','Data0','Data1','Data2','Data3','Data4','Data5','Data6']]
 df_y0 = df0['Class']
 df_y1 = df1['Class']
@@ -22,10 +22,6 @@ df_y2 = df2['Class']
 
 df_x = pd.concat([df_x0,df_x1,df_x2])
 df_y = pd.concat([df_y0,df_y1,df_y2])
-print(df_x0)
-print(df_x1)
-print(df_x2)
-print(df_x)
 kfold = KFold(n_splits=10, shuffle = True, random_state = 0) #10-fold cross validation 
 
 model9 = XGBClassifier(max_depth=5, n_estimators=100, learning_rate=0.1, eval_metric = 'error',objective = 'binary:logistic',use_label_encoder=False)
